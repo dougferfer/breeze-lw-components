@@ -28,7 +28,9 @@ class ConfirmPassword extends Component
      */
     public function confirmPassword(): void
     {
-        if (!Auth::guard('web')->validate([
+        $this->validate();
+
+        if (! Auth::guard('web')->validate([
             'email' => Auth::user()->email,
             'password' => $this->password,
         ])) {
