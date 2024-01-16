@@ -14,6 +14,9 @@ class UpdatePassword extends Component
     public string $password = '';
     public string $password_confirmation = '';
 
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.profile.update-password');

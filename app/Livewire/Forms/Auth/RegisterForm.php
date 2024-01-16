@@ -11,13 +11,13 @@ use Illuminate\Auth\Events\Registered;
 class RegisterForm extends Form
 {
     public string $name = '';
-
     public string $email = '';
-
     public string $password = '';
-    
     public string $password_confirmation = '';
 
+    /**
+     * Define validation rules
+     */
     public function rules(): array
     {
         return [
@@ -27,6 +27,9 @@ class RegisterForm extends Form
         ];
     }
 
+    /**
+     * Save a user from the registration form
+     */
     public function save(): User
     {
         $this->password = Hash::make($this->password);

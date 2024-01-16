@@ -12,11 +12,17 @@ class Register extends Component
 {
     public RegisterForm $form;
 
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.auth.register');
     }
 
+    /**
+     * Handle an incoming registration request.
+     */
     public function register(): void
     {
         $this->form->validate();

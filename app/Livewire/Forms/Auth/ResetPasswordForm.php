@@ -13,13 +13,13 @@ use Livewire\Form;
 class ResetPasswordForm extends Form
 {
     public string $token = '';
-
     public string $email = '';
-
     public string $password = '';
-    
     public string $password_confirmation = '';
 
+    /**
+     * Define validation rules
+     */
     public function rules(): array
     {
         return [
@@ -29,6 +29,9 @@ class ResetPasswordForm extends Form
         ];
     }
 
+    /**
+     * Reset the password
+     */
     public function resetPassword(): string
     {
         // Here we will attempt to reset the user's password. If it is successful we

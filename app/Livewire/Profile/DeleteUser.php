@@ -10,11 +10,17 @@ class DeleteUser extends Component
 {
     public string $password = '';
 
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.profile.delete-user');
     }
 
+    /**
+     * Define validation rules
+     */
     public function rules()
     {
         return [

@@ -9,6 +9,9 @@ use Livewire\Component;
 
 class VerifyEmail extends Component
 {
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.auth.verify-email');

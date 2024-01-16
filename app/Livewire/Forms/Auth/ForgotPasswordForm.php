@@ -9,6 +9,9 @@ class ForgotPasswordForm extends Form
 {
     public string $email = '';
 
+    /**
+     * Define validation rules
+     */
     public function rules(): array
     {
         return [
@@ -16,6 +19,9 @@ class ForgotPasswordForm extends Form
         ];
     }
 
+    /**
+     * Send a password reset link to the provided email address.
+     */
     public function send(): string
     {
         // We will send the password reset link to this user. Once we have attempted

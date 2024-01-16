@@ -10,6 +10,9 @@ class ResetPassword extends Component
 {
     public ResetPasswordForm $form;
     
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.auth.reset-password');
@@ -21,10 +24,12 @@ class ResetPassword extends Component
     public function mount(string $token): void
     {
         $this->form->token = $token;
-
         $this->form->email = request()->string('email');
     }
 
+    /**
+     * Reset the password for the given user.
+     */
     public function resetPassword(): void
     {
         $this->form->validate();

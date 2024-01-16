@@ -22,6 +22,9 @@ class UpdateProfile extends Component
         $this->email = Auth::user()->email;
     }
 
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.profile.update-profile');

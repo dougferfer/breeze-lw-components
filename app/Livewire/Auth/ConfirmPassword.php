@@ -5,18 +5,25 @@ namespace App\Livewire\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class ConfirmPassword extends Component
 {
     public string $password = '';
 
-    public function render()
+    /**
+     * Render the component
+     */
+    public function render(): View
     {
         return view('livewire.auth.confirm-password');
     }
 
-    public function rules()
+    /**
+     * Define validation rules
+     */
+    public function rules(): array
     {
         return [
             'password' => ['required', 'string'],

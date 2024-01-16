@@ -11,11 +11,17 @@ class Login extends Component
 {
     public LoginForm $form;
 
+    /**
+     * Render the component
+     */
     public function render()
     {
         return view('livewire.auth.login');
     }
 
+    /**
+     * Handle an incoming authentication request.
+     */
     public function login(): void
     {
         $this->form->validate();
