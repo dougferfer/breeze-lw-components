@@ -7,11 +7,10 @@
         <!-- Password -->
         <div>
             <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" 
-                            class="block mt-1 w-full"
-                            type="password"
+            <x-text-input id="password"
                             name="password"
+                            type="password"
+                            class="block mt-1 w-full"
                             wire:model="password"
                             required autocomplete="current-password" />
 
@@ -19,7 +18,7 @@
         </div>
 
         <div class="flex justify-end mt-4">
-            <x-primary-button type="submit">
+            <x-primary-button>
                 {{ __('Confirm') }}
             </x-primary-button>
         </div>

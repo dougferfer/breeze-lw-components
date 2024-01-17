@@ -15,8 +15,8 @@
             <x-text-input id="update_password_current_password" 
                             name="current_password" 
                             type="password" 
-                            wire:model="current_password"
                             class="mt-1 block w-full" 
+                            wire:model="current_password"
                             autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
@@ -27,8 +27,8 @@
             <x-text-input id="update_password_password" 
                             name="password" 
                             type="password" 
-                            wire:model="password"
                             class="mt-1 block w-full" 
+                            wire:model="password"
                             autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -39,8 +39,8 @@
             <x-text-input id="update_password_password_confirmation" 
                             name="password_confirmation" 
                             type="password" 
-                            wire:model="password_confirmation"
                             class="mt-1 block w-full" 
+                            wire:model="password_confirmation"
                             autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />

@@ -15,8 +15,8 @@
             <x-text-input id="name" 
                             name="name" 
                             type="text"
-                            wire:model="name"
                             class="mt-1 block w-full" 
+                            wire:model="name"
                             required autofocus autocomplete="name" />
 
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
@@ -27,8 +27,8 @@
             <x-text-input id="email" 
                             name="email" 
                             type="email" 
-                            wire:model="email"
                             class="mt-1 block w-full" 
+                            wire:model="email"
                             required autocomplete="username" />
                             
             <x-input-error class="mt-2" :messages="$errors->get('email')" />

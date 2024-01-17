@@ -4,9 +4,9 @@
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" 
+                            name="email"
+                            type="email"  
                             class="block mt-1 w-full" 
-                            type="email" 
-                            name="email" 
                             wire:model="form.email"
                             readonly required autofocus autocomplete="username" />
 
@@ -17,9 +17,9 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
             <x-text-input id="password" 
-                            class="block mt-1 w-full" 
-                            type="password" 
                             name="password"
+                            type="password" 
+                            class="block mt-1 w-full" 
                             wire:model="form.password" 
                             required autocomplete="new-password" />
 
@@ -30,9 +30,9 @@
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
             <x-text-input id="password_confirmation"
-                            class="block mt-1 w-full"
-                            type="password"
                             name="password_confirmation"
+                            type="password"
+                            class="block mt-1 w-full"
                             wire:model="form.password_confirmation" 
                             required autocomplete="new-password" />
 

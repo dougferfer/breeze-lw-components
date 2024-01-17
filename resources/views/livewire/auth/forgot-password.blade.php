@@ -11,18 +11,17 @@
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" 
-                            class="block mt-1 w-full" 
+                            name="email"
                             type="email" 
-                            name="email" 
+                            class="block mt-1 w-full" 
                             wire:model="form.email" 
-                            :value="old('email')" 
                             required autofocus />
 
             <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button type="submit">
+            <x-primary-button>
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>
         </div>

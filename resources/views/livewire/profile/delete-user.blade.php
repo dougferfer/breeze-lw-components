@@ -29,8 +29,8 @@
                 <x-text-input id="password"
                                 name="password"
                                 type="password"
-                                wire:model="password"
                                 class="mt-1 block w-3/4"
+                                wire:model="password"
                                 placeholder="{{ __('Password') }}"
                                 required />
 
