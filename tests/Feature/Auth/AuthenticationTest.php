@@ -2,32 +2,44 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Livewire\Livewire;
 
 test('login screen can be rendered', function () {
     $response = $this->get('/login');
 
-    $response->assertStatus(200);
+    $response
+        ->assertOk()
+        ->assertSeeLivewire(\App\Livewire\Auth\Login::class);
 });
 
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'password',
-    ]);
+    $component = Livewire::test(\App\Livewire\Auth\Login::class)
+        ->set('form.email', $user->email)
+        ->set('form.password', 'password');
+
+    $component->call('login');
+
+    $component
+        ->assertHasNoErrors()
+        ->assertRedirect(RouteServiceProvider::HOME);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(RouteServiceProvider::HOME);
 });
 
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
+    $component = Livewire::test(\App\Livewire\Auth\Login::class)
+        ->set('form.email', $user->email)
+        ->set('form.password', 'wrong-password');
+
+    $component->call('login');
+
+    $component
+        ->assertHasErrors()
+        ->assertNoRedirect();
 
     $this->assertGuest();
 });
@@ -35,8 +47,15 @@ test('users can not authenticate with invalid password', function () {
 test('users can logout', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/logout');
+    $this->actingAs($user);
+
+    $component = Livewire::test(\App\Livewire\Auth\Logout::class);
+
+    $component->call('logout');
+
+    $component
+        ->assertHasNoErrors()
+        ->assertRedirect('/');
 
     $this->assertGuest();
-    $response->assertRedirect('/');
 });

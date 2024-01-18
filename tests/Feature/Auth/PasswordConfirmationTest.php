@@ -1,32 +1,45 @@
 <?php
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Livewire\Livewire;
 
 test('confirm password screen can be rendered', function () {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)->get('/confirm-password');
 
-    $response->assertStatus(200);
+    $response
+        ->assertOk()
+        ->assertSeeLivewire(\App\Livewire\Auth\ConfirmPassword::class);
 });
 
 test('password can be confirmed', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/confirm-password', [
-        'password' => 'password',
-    ]);
+    $this->actingAs($user);
 
-    $response->assertRedirect();
-    $response->assertSessionHasNoErrors();
+    $component = Livewire::test(\App\Livewire\Auth\ConfirmPassword::class)
+        ->set('password', 'password');
+
+    $component->call('confirmPassword');
+
+    $component
+        ->assertRedirect(RouteServiceProvider::HOME)
+        ->assertHasNoErrors();
 });
 
 test('password is not confirmed with invalid password', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/confirm-password', [
-        'password' => 'wrong-password',
-    ]);
+    $this->actingAs($user);
 
-    $response->assertSessionHasErrors();
+    $component = Livewire::test(\App\Livewire\Auth\ConfirmPassword::class)
+        ->set('password', 'wrong-password');
+
+    $component->call('confirmPassword');
+
+    $component
+        ->assertNoRedirect()
+        ->assertHasErrors('password');
 });

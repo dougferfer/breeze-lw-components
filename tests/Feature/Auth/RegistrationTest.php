@@ -1,21 +1,27 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Livewire\Livewire;
 
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
-    $response->assertStatus(200);
+    $response
+        ->assertOk()
+        ->assertSeeLivewire(\App\Livewire\Auth\Register::class);
 });
 
 test('new users can register', function () {
-    $response = $this->post('/register', [
-        'name' => 'Test User',
-        'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
-    ]);
+    $component = Livewire::test(\App\Livewire\Auth\Register::class)
+        ->set('form.name', 'Test User')
+        ->set('form.email', 'test@example.com')
+        ->set('form.password', 'password')
+        ->set('form.password_confirmation', 'password');
+
+    $component->call('register');
+
+    $component->assertRedirect(RouteServiceProvider::HOME);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(RouteServiceProvider::HOME);
 });
+
