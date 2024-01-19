@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Livewire\Livewire;
 
 test('profile page is displayed', function () {
     $user = User::factory()->create();
